@@ -11,10 +11,10 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1 
 kind: RoleBinding
 metadata:
-  names: roboshop-sa-rolebinding
+  name: roboshop-sa-rolebinding
   namespace: roboshop
 subjects:
-- kind: serviceAccount
+- kind: ServiceAccount
   name: aws-secret-manager-sa 
   namespace: roboshop
 roleRef:
@@ -28,6 +28,7 @@ metadata:
   name: aws-cli 
   namespace: roboshop
 spec:
+ serviceAccountName: aws-secret-manager-sa
  containers:
  - name: aws-cli
    image: amazon/aws-cli
